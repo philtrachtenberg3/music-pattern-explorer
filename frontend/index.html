@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multilingual Music Pattern Explorer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Music Pattern Explorer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="nav-search">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-patterns">Chord Patterns</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-favorites">My Favorites</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-language">Language Tools</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-container mt-4">
+        <!-- Search Section -->
+        <section id="search-section" class="section-container">
+            <div class="row mb-3">
+                <div class="col-md-8 offset-md-2">
+                    <h2>Find Songs to Analyze</h2>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="search-input" placeholder="Search for a song or artist...">
+                        <button class="btn btn-primary" id="search-button">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <div id="search-results" class="list-group"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Song Detail Section -->
+        <section id="song-detail-section" class="section-container d-none">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="song-info-container">
+                        <h2 id="song-title">Song Title</h2>
+                        <h4 id="song-artist">Artist</h4>
+                        <div class="song-metadata">
+                            <p>Album: <span id="song-album">Album Name</span></p>
+                            <p>Key: <span id="song-key">C Major</span></p>
+                            <p>Tempo: <span id="song-tempo">120 BPM</span></p>
+                            <p>Language: <span id="song-language">English</span></p>
+                        </div>
+                        <div class="song-actions mt-3">
+                            <button class="btn btn-primary me-2" id="play-preview">Play Preview</button>
+                            <button class="btn btn-outline-primary me-2" id="show-lyrics">Show Lyrics</button>
+                            <button class="btn btn-success" id="add-favorite">
+                                <i class="bi bi-heart"></i> Add to Favorites
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chord-progression-container">
+                        <h3>Chord Progressions</h3>
+                        <div id="chord-progressions-list" class="list-group"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="chord-visualization-container">
+                        <h3>Chord Visualization</h3>
+                        <div id="chord-visualization"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Patterns Section -->
+        <section id="patterns-section" class="section-container d-none">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Common Chord Patterns</h2>
+                    <p>Discover the chord patterns that make your favorite songs work.</p>
+                    <div id="patterns-container" class="row"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Favorites Section -->
+        <section id="favorites-section" class="section-container d-none">
+            <div class="row">
+                <div class="col-12">
+                    <h2>My Favorite Songs & Patterns</h2>
+                    <ul class="nav nav-tabs mb-3" id="favorites-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="songs-tab" data-bs-toggle="tab" href="#favorite-songs">Songs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="patterns-tab" data-bs-toggle="tab" href="#favorite-patterns">Patterns</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="favorite-songs">
+                            <div id="favorite-songs-list" class="list-group"></div>
+                        </div>
+                        <div class="tab-pane fade" id="favorite-patterns">
+                            <div id="favorite-patterns-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Language Tools Section -->
+        <section id="language-section" class="section-container d-none">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Language Learning Tools</h2>
+                    <div id="language-tools-container">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5>Lyrics Translation</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h6>Original Lyrics</h6>
+                                        <div id="original-lyrics" class="lyrics-container"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6>Translated Lyrics</h6>
+                                        <div id="translated-lyrics" class="lyrics-container"></div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12 text-center">
+                                        <select class="form-select w-auto d-inline-block" id="translate-language">
+                                            <option value="en">English</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="pt">Portuguese</option>
+                                        </select>
+                                        <button class="btn btn-primary ms-2" id="translate-button">Translate</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Vocabulary Builder</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="vocabulary-list" class="row"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modals -->
+        <div class="modal fade" id="lyrics-modal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Lyrics</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="lyrics-content"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="translate-lyrics-button">Translate</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <span class="text-muted">Multilingual Music Pattern Explorer | Created for learning music theory and languages</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="js/main.js"></script>
+    <script src="js/visualization.js"></script>
+    <script src="js/player.js"></script>
+</body>
+</html>
