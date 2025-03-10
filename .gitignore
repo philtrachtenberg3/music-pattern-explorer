@@ -51,4 +51,4 @@ htmlcov/
 .pytest_cache/
 
 # Temporary files
-*.tmp
+*.tmpphil-ssh-key*
